@@ -1,0 +1,31 @@
+.course-title {
+  font-weight: bold;
+  text-align: center; /* Center-align the title */
+  margin-bottom: 20px; /* Add some margin below the title */
+}
+
+.course-description {
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.course-button {
+  display: block; /* Ensure the button occupies full width */
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px; /* Add some margin above the button */
+}
+
+.course-button:hover {
+  background-color: #0056b3;
+}
+
+.course-image {
+  max-width: 100%; /* Ensure images don't exceed container width */
+  height: auto; /* Maintain aspect ratio */
+}
