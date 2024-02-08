@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +5,8 @@ import './course.css';
 
 function CourseList() {
   const [courses, setCourses] = useState([]);
-const navigate=useNavigate();
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,8 +20,6 @@ const navigate=useNavigate();
     fetchData();
   }, []);
 
- 
-
   const handlePurchase = async (courseId) => {
     try {
       const webtoken = localStorage.getItem('token');
@@ -29,33 +27,44 @@ const navigate=useNavigate();
         token: webtoken
       });
       const decodedToken = tokenres.data;
-      console.log("Decoded token:", decodedToken); 
       const userName = decodedToken.username;
-      console.log("Username:", userName); 
       const response = await axios.post(`http://localhost:3000/users/courses/${courseId}`, {
         username: userName
-        
       });
       console.log(response.data);
     } catch (error) {
       console.error('Error during purchase:', error);
     }
   };
+
   return (
-    <div>
+    <div className='course-container'>
       <h2 className='course-title'>Available Courses</h2>
       <ul>
         {courses.map((course) => (
           <li key={course._id}>
-            <img src={course.imageLink} className='course-image'></img>
-            <p className='course-title'>{course.title}</p>
-            <p className='course-description'>{course.description}</p>
-            
-            <button className='course-button' onClick={() => handlePurchase(course._id)}>Buy</button>
+           <div className='course-image' style={{ textAlign: 'center' }}>
+    <img src={course.imageLink} alt={course.title} style={{ display: 'block', margin: 'auto' }} />
+</div>
+
+            <div className='course-details'>
+              <p className='course-title'>{course.title}-{course.description}</p>
+             
+              <button className='course-button' onClick={() => handlePurchase(course._id)}>Buy</button>
+            </div>
           </li>
         ))}
       </ul>
-      <button onClick={() => navigate('/mycourses')}>My courses</button>
+      <button style={{ position: 'absolute',
+                 top: '10px',
+                 right: '10px',
+                 backgroundColor: '#007bff',
+                 color: 'white',
+                 border: 'none',
+                 borderRadius: '5px',
+                 cursor: 'pointer' }} onClick={() => navigate('/mycourses')}>My courses</button>
+
+
     </div>
   );
 }

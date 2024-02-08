@@ -36,7 +36,7 @@ function SignUp() {
       <button onClick={() => navigate('/login')} style={{
   width: '30%',
   padding: '10px',
-  backgroundColor: 'rgb(172, 31, 31)',
+  backgroundColor: 'rgb(226, 33, 233)',
   color: 'white',
   border: 'none',
   borderRadius: 5, 

@@ -5,7 +5,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import CourseList from './components/CourseList';
 import PurchaseCourse from './components/PurchaseCourse';
-
+import './index.css'
 
 
 function App() {

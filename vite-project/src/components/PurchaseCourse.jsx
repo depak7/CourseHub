@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 function PurchaseCourse() {
   const [purchasedCourses, setPurchasedCourses] = useState([]);
   const [availableCourses, setAvailableCourses] = useState([]);
@@ -48,21 +47,25 @@ function PurchaseCourse() {
   const getPurchasedCourseDetails = (courseId) => {
     console.log("courseid", courseId);
     const course = availableCourses.find(course => course._id === courseId);
-    return course ? `${course.title} - ${course.description}` : '';
+    return course ? (
+      <div>
+        <img src={course.imageLink} alt={course.title} />
+        <p >{course.title}-{course.description}</p>
+      </div>
+    ) : null;
   };
-
+  
   return (
     <div>
       <h2>Purchased Courses</h2>
-      <ul>
+      <ul className='course-list'>
         {purchasedCourses.map(courseId => (
-          <li key={courseId}>
+          <div className='course-item'>
             {getPurchasedCourseDetails(courseId)}
-          </li>
+          </div>
         ))}
       </ul>
     </div>
   );
-        }  
-
+};
 export default PurchaseCourse;
